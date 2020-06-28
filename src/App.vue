@@ -16,4 +16,7 @@ export default {
 <style>
 /* 引入基础css样式 */
 @import url('assets/css/base.css');
+#app {
+  height: 100%;
+}
 </style>

@@ -4,7 +4,7 @@ if(process.env.NODE_ENV === 'production')
   url = "http://49.232.105.82:9090"
 }else if(process.env.NODE_ENV === 'development')
 {
-  url = "http://127.0.0.1:9090"
+  url = "http://localhost:9090"
 }else{
   url = ""
 }
@@ -22,12 +22,12 @@ module.exports = {
     },
     devServer: {
       proxy: {
-          "/api": {
+          "/": {
               target: url,
-              changOrigin: true, // 可以跨域
-              pathRewrite: {
-                '^/api': '/'
-              }
+              changOrigin: true // 可以跨域
+              // pathRewrite: {
+              //   '^/api': '/'
+              // }
           }
         }
       }

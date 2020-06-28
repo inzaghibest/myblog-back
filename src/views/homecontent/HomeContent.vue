@@ -1,7 +1,8 @@
 <template>
   <div id="home-content">
       <el-container class="aside-container">
-          <el-aside width = "200px">
+          <el-row class="tac">
+          <el-aside width = "200px" height = "1000px">
               <el-menu default-active="1" class="left-menu" @open="handleOpen" @close="handleClose"
                       background-color="#545c64"
                       text-color="#fff"
@@ -22,7 +23,7 @@
                         <span>读书管理</span>
                         </template>
                             <el-menu-item-group>
-                                <el-menu-item index="2-1">新建读书</el-menu-item>
+                                <el-menu-item index="2-1" @click="addBooks">新建读书</el-menu-item>
                                 <el-menu-item index="2-2">查看书籍</el-menu-item>
                             </el-menu-item-group>
                   </el-submenu>
@@ -38,17 +39,28 @@
                   </el-submenu>
                   <el-submenu index="4">
                         <template slot="title">
+                        <i class="iconfont icon-biaoqian"></i>
+                        <span>分类管理</span>
+                        </template>
+                            <el-menu-item-group>
+                                <el-menu-item index="4-1" @click="categoryShow">查看分类</el-menu-item>
+                                <el-menu-item index="4-2" @click="categoryAdd">新建类别</el-menu-item>
+                            </el-menu-item-group>
+                  </el-submenu>
+                  <el-submenu index="5">
+                        <template slot="title">
                         <i class="iconfont  icon-guanyu"></i>
                         <span>关于</span>
                         </template>
                             <el-menu-item-group>
-                                <el-menu-item index="4-1">关于我</el-menu-item>
+                                <el-menu-item index="5-1">关于我</el-menu-item>
                             </el-menu-item-group>
                   </el-submenu>
               </el-menu>
           </el-aside>
+          </el-row>
           <el-container>
-          <el-header class="home-header">
+            <el-header class="home-header">
                 <el-dropdown>
                     <span class="title">
                         个人博客管理平台                    
@@ -65,7 +77,7 @@
                 <span>{{ author }}</span>
             </el-header>
             <el-main>
-                main
+                <router-view/>
               </el-main>
           </el-container>
       </el-container>
@@ -89,13 +101,31 @@ export default {
         },
         addArticles() {
             console.log("newAritics")
-            this.$router.push('/edit')
+            // this.$router.push('/edit')
+            this.$router.push('/home/articleslist')
+        },
+        addBooks() {
+            console.log("newBooks")
+            // this.$router.push('/edit')
+            this.$router.push('/home/booklist')
+        },
+        // 查看分类
+        categoryShow() {
+            console.log("categoryShow")
+            this.$router.push('/home/categorylist')
+        },
+        // 新建分类
+        categoryAdd() {
+            console.log("test")
         }
     }
 }
 </script>
 
 <style scoped>
+#home-content {
+    height: 100%;
+}
     .el-header {
        background-color: #B3C0D1;
        color: #333;
@@ -120,10 +150,12 @@ export default {
     }
 
     .aside-container {
-        
+        height: 100%;
     }
+
     .el-aside {
-        
+        height: 100%;
+        background-color: blue;
     }
 
     .el-main {

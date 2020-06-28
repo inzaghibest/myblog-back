@@ -41,17 +41,28 @@ export default {
         submitForm (formName) {
             this.$refs[formName].validate((valid) => {
                 if(valid) {
-                    this.$http({
-                        url: this.$http.adornUrl('/login'),
-                        method: 'post',
-                          data: {
-                            userName: this.loginForm.username,
-                            password: this.loginForm.password
+                    this.$http.post(`/login?username=${this.loginForm.username}&password=${this.loginForm.password}`)
+                    .then(res=> {
+                        let data = res.data
+                        if(data.code == 200)
+                        {
+                            this.$router.push('/home')
                         }
-                    }).then(res=>{
-                        console.log(res)
-                        this.$router.replace('/home')
-                        })
+                    })
+                    // this.$http({
+                    //     url: this.$http.adornUrl('/login'),
+                    //     method: 'post',
+                    //     params :{
+                    //         userName: this.loginForm.username,
+                    //         password: this.loginForm.password
+                    //     },
+                    //     headers: {
+                    //         'Content-Type': 'application/x-www-form-urlencoded' 
+                    //     }
+                    // }).then(res=>{
+                    //     console.log(res)
+                    //     // this.$router.replace('/home')
+                    //     })
                 }else {
                     return false
                 }
