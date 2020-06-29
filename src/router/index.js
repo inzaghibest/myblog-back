@@ -1,11 +1,11 @@
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 import MyLogin from 'views/mylogin/MyLogin'
-import TextEdit from 'views/textedit/TextEdit'
 import HomeContent from 'views/homecontent/HomeContent'
 import ArticlesList from 'views/homecontent/articles/ArticlesList';
 import BookList from 'views/homecontent/articles/BookList';
 import CategoryList from 'views/homecontent/category/CategoryList'
+import TextEdit from 'views/homecontent/textedit/TextEdit'
 
 Vue.use(VueRouter)
 
@@ -34,12 +34,12 @@ Vue.use(VueRouter)
         path: '/home/categorylist',
         component: CategoryList
 
+      },
+      {
+        path: '/home/textedit',
+        component: TextEdit
       }
     ]
-  },
-  {
-    path: '/edit',
-    component: TextEdit
   }
 ]
 

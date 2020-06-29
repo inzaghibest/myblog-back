@@ -16,8 +16,6 @@
 </template>
 
 <script>
-// import {request} from 'network/';
-// import axios from 'axios';
 
 export default {
     name: "MyLogin",
@@ -38,31 +36,33 @@ export default {
         }
     },
     methods: {
+        // 1. 登录验证
         submitForm (formName) {
             this.$refs[formName].validate((valid) => {
                 if(valid) {
-                    this.$http.post(`/login?username=${this.loginForm.username}&password=${this.loginForm.password}`)
+                    // 后台springsecurity验证时,必须是这种类型格式数据的post请求才能收到name和password
+                    this.$http.post(`/login?username=${this.loginForm.username}
+                    &password=${this.loginForm.password}`)
                     .then(res=> {
                         let data = res.data
                         if(data.code == 200)
                         {
+                            this.$notify({
+                                title: 'success',
+                                message: '登录成功!',
+                                type: 'success',
+                                position: 'top-center'
+                            })
                             this.$router.push('/home')
+                        }else{
+                                this.$notify({
+                                title: 'error',
+                                message: data.msg,
+                                type: 'error',
+                                position: 'top-center'
+                            })
                         }
                     })
-                    // this.$http({
-                    //     url: this.$http.adornUrl('/login'),
-                    //     method: 'post',
-                    //     params :{
-                    //         userName: this.loginForm.username,
-                    //         password: this.loginForm.password
-                    //     },
-                    //     headers: {
-                    //         'Content-Type': 'application/x-www-form-urlencoded' 
-                    //     }
-                    // }).then(res=>{
-                    //     console.log(res)
-                    //     // this.$router.replace('/home')
-                    //     })
                 }else {
                     return false
                 }

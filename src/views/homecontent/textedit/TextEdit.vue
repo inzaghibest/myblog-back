@@ -9,11 +9,15 @@
             <el-input v-model="editForm.author"></el-input>
         </el-form-item>
         <el-form-item label="分类" prop="classify">
-            <el-select v-model="editForm.classify" placeholder="请选择分类">
+            <!-- <el-select v-model="editForm.classify" placeholder="请选择分类">
                 <el-option v-for=" (item,index) in articlesClassify" 
                 :label="item.label" :value="item.lable" :key="index.id">
                 </el-option>
-            </el-select>
+            </el-select> -->
+                <el-cascader
+                v-model="editForm.classify"
+                :options="categoryOptions"
+                @change="handleChange"></el-cascader>
         </el-form-item>
         <el-form-item label="是否推荐">
             <el-switch v-model="editForm.delivery"></el-switch>
@@ -42,14 +46,21 @@ export default {
                 title: '',
                 author: '',
                 delivery: false,
-                classify: ''
+                classify: []
             },
             // 上传的图片,临时记录,等发布时才提交到服务器.
             img_files: {}, // {1: file, 2: file2}
-            articlesClassify:[
-                {lable: 'vue'},
-                {lable: 'java'},
-                {lable: 'c++'},
+            categoryOptions:[{
+                value: 'shejiyuanze',
+                label: '设计原则',
+                children: [{
+                    value: 'yizhi',
+                    label: '一致'
+                }, {
+                    value: 'fankui',
+                    label: '反馈'
+                }]    
+            }
             ],
             rules: {
                 title: [{required: true, message: '请输入文章标题!', trigger: 'blur' }],
@@ -59,6 +70,10 @@ export default {
         }
     },
     methods: {
+        handleChange (value) {
+            console.log(value);
+            console.log(this.editForm.classify)
+        },
         change() {
             console.log('---------change-----------')
             console.log(this.value)

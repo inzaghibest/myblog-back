@@ -1,11 +1,10 @@
 <template>
   <div id="home-content">
       <el-container class="aside-container">
-          <el-row class="tac">
           <el-aside width = "200px" height = "1000px">
               <el-menu default-active="1" class="left-menu" @open="handleOpen" @close="handleClose"
-                      background-color="#545c64"
-                      text-color="#fff"
+                      background-color="#F2F6FC"
+                      text-color="#000"
                       active-text-color="#ffd04b">
                   <el-submenu index="1">
                         <template slot="title">
@@ -58,7 +57,6 @@
                   </el-submenu>
               </el-menu>
           </el-aside>
-          </el-row>
           <el-container>
             <el-header class="home-header">
                 <el-dropdown>
@@ -102,7 +100,7 @@ export default {
         addArticles() {
             console.log("newAritics")
             // this.$router.push('/edit')
-            this.$router.push('/home/articleslist')
+            this.$router.push('/home/textedit')
         },
         addBooks() {
             console.log("newBooks")
@@ -125,9 +123,10 @@ export default {
 <style scoped>
 #home-content {
     height: 100%;
+    background-color: #F2F6FC;
 }
     .el-header {
-       background-color: #B3C0D1;
+       background-color: #91C5FB;
        color: #333;
        font-size: 18px;
        height: 60px;
@@ -155,11 +154,11 @@ export default {
 
     .el-aside {
         height: 100%;
-        background-color: blue;
+        /* background-color: blue; */
     }
 
     .el-main {
-        background-color: blue;
+        /* background-color: blue; */
     }
 
     .el-submenu i {
