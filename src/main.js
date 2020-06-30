@@ -5,10 +5,12 @@ import httpRequest from './network/httRequest'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import mavonEditor from 'mavon-editor'
+// import makred from 'marked'
 import 'mavon-editor/dist/css/index.css'
 
 Vue.use(ElementUI) // 引入ElementUI
-Vue.use(mavonEditor) // 引入ElementUI
+Vue.use(mavonEditor) // 引入mavonEditor
+// Vue.use(makred)
 Vue.config.productionTip = false
 Vue.prototype.HOST='/'
 // 挂载全局

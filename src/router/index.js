@@ -6,6 +6,7 @@ import ArticlesList from 'views/homecontent/articles/ArticlesList';
 import BookList from 'views/homecontent/articles/BookList';
 import CategoryList from 'views/homecontent/category/CategoryList'
 import TextEdit from 'views/homecontent/textedit/TextEdit'
+import TextShow from 'views/homecontent/textedit/TextShow'
 
 Vue.use(VueRouter)
 
@@ -38,6 +39,10 @@ Vue.use(VueRouter)
       {
         path: '/home/textedit',
         component: TextEdit
+      },
+      {
+        path: '/home/textshow',
+        component: TextShow
       }
     ]
   }

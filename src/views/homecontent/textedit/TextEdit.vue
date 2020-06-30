@@ -90,16 +90,20 @@ export default {
             for(var _img in this.img_files) {
                 formdata.append("files", this.img_files[_img])
             }
-            console.log(formdata)
             this.$http({
                 url: this.$http.adornUrl('/articles/add/imgUpLoad'),
                 method: 'post',
                 data: formdata,
                 headers: { 'Content-Type': 'multipart/form-data' }
             }).then((result) => {
+                console.log(result)
                 const resData = result.data;
-                for (var i = 0; i < resData.length; i++) {              
-                this.$refs.md.$img2Url(i+1, resData[i]);
+                console.log(resData)
+                if(resData.code === 200)
+                {
+                    for (var i = 0; i < resData.data.length; i++) {              
+                    this.$refs.md.$img2Url(i+1, resData.data[i]);
+                    }
                 }
             }).catch((err) => {
                 console.log(err)
@@ -128,7 +132,16 @@ export default {
                     content: this.value
                 }
             }).then((result) => {
-                console.log("------------------提交表单成功-------------" + result)
+                    if(result.data.code === 200)
+                    {
+                        this.$notify({
+                            title: 'success',
+                            message: result.data.msg,
+                            type: 'success',
+                            position: 'top-center'
+                        })
+                        this.$router.push('/home/textshow')
+                    }
                 }
             ).catch((err) => {
                 console.log(err)
