@@ -24,7 +24,7 @@ Vue.use(VueRouter)
     component: HomeContent,
     children: [
       {
-        path: '/home/articleslist',
+        path: '/home/aritcleslist',
         component: ArticlesList
       },
       {

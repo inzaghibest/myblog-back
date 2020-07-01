@@ -13,7 +13,7 @@
                         </template>
                             <el-menu-item-group>
                                 <el-menu-item index="1-1" @click="addArticles">新建博文</el-menu-item>
-                                <el-menu-item index="1-2">查看博文</el-menu-item>
+                                <el-menu-item index="1-2" @click="showArticles">查看博文</el-menu-item>
                             </el-menu-item-group>
                   </el-submenu>
                   <el-submenu index="2">
@@ -101,6 +101,10 @@ export default {
             console.log("newAritics")
             // this.$router.push('/edit')
             this.$router.push('/home/textedit')
+        },
+        showArticles() {
+            console.log("showArticles")
+            this.$router.push('/home/aritcleslist')
         },
         addBooks() {
             console.log("newBooks")
